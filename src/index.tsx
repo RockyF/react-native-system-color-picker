@@ -4,13 +4,17 @@ const SystemColorPicker = NativeModules.SystemColorPicker;
 const SystemColorPickerEmitter = new NativeEventEmitter(SystemColorPicker);
 
 const subscriptions = {};
-SystemColorPickerEmitter.addListener('colorChange', ({callID, color}) => {
-	let subscription = subscriptions[callID];
-	subscription(color);
+SystemColorPickerEmitter.addListener('colorChange', ({cmdID, color}) => {
+	let subscription = subscriptions[cmdID];
+	subscription && subscription(color);
 });
 
-export function pickColor(onPick, defaultColor?: number) {
-	SystemColorPicker.open(defaultColor).then(id => {
+interface Options {
+	showAlpha?: boolean,
+}
+
+export function pickColor(onPick, color: number, options?: Options) {
+	SystemColorPicker.open(color, options).then(id => {
 		subscriptions[id] = onPick
 	});
 }
