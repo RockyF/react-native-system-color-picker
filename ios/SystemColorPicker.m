@@ -32,8 +32,8 @@ RCT_REMAP_METHOD(open,
     colorPanel.color = _color;
   }
   if (_options != nil) {
-    if(_options[@"showAlpha"] != nil) {
-      colorPanel.showsAlpha = (BOOL) _options[@"showAlpha"];
+    if(_options[@"showsAlpha"] != nil) {
+      colorPanel.showsAlpha = (BOOL) _options[@"showsAlpha"];
     }
   }else{
     colorPanel.showsAlpha = NO;

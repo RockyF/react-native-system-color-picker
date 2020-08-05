@@ -10,7 +10,7 @@ SystemColorPickerEmitter.addListener('colorChange', ({cmdID, color}) => {
 });
 
 interface Options {
-	showAlpha?: boolean,
+	showsAlpha?: boolean,
 }
 
 export function pickColor(onPick, color: number, options?: Options) {
