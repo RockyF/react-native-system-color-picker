@@ -20,11 +20,14 @@ import {pickColor} from "react-native-system-color-picker"
 
 // ...
 
-pickColor((c) => {
-			...onPickColor
-		}, color, (c) => {
-			...onColorChange
-		}, {showsAlpha: true,});
+pickColor(
+	(c) => {
+		...onPickColor
+	}, color, 
+	(c) => {
+		...onColorChange
+	}, {showsAlpha: true,}
+);
 ```
 
 ## Contributing
