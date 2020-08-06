@@ -6,16 +6,25 @@ System color picker for react-native
 
 ```sh
 npm install react-native-system-color-picker
+or
+yarn add react-native-system-color-picker
 ```
+
+# Shortcuts
+![open](https://raw.githubusercontent.com/RockyF/react-native-system-color-picker/master/assets/shortcut0.png)
 
 ## Usage
 
 ```js
-import SystemColorPicker from "react-native-system-color-picker";
+import {pickColor} from "react-native-system-color-picker"
 
 // ...
 
-const result = await SystemColorPicker.multiply(3, 7);
+pickColor((c) => {
+			...onPickColor
+		}, color, (c) => {
+			...onColorChange
+		}, {showsAlpha: true,});
 ```
 
 ## Contributing

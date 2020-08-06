@@ -6,7 +6,7 @@
 RCT_EXPORT_MODULE()
 
 - (NSArray<NSString *> *)supportedEvents {
-  return @[@"colorChange"];
+  return @[@"colorChange", @"close"];
 }
 
 RCT_REMAP_METHOD(open,
@@ -38,6 +38,7 @@ RCT_REMAP_METHOD(open,
   }else{
     colorPanel.showsAlpha = NO;
   }
+  [colorPanel setDelegate:self];
   [colorPanel orderFront:nil];
 
   _resolve(cmdID);
@@ -46,6 +47,11 @@ RCT_REMAP_METHOD(open,
 - (void)gotColor:(NSColorPanel *)sender {
 
   [self sendEventWithName:@"colorChange" body:@{@"cmdID": _cmdID, @"color": RCTColorToHexString(sender.color.CGColor)}];
+}
+
+- (void)windowWillClose:(NSNotification *)notification {
+  NSColorPanel *colorPanel = [NSColorPanel sharedColorPanel];
+  [self sendEventWithName:@"close" body:@{@"cmdID": _cmdID, @"color": RCTColorToHexString(colorPanel.color.CGColor)}];
 }
 
 @end
